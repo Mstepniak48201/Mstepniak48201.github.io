@@ -1,0 +1,29 @@
+h1 {
+  color: ghostwhite;
+    font-size: 20px;
+    font-family: sans-serif
+}
+
+a {
+    color:dodgerblue;
+    font-family: sans-serif
+}
+div {
+    margin-top: 10px;
+}
+.entire {
+    color: green;
+    font-family: sans-serif
+}
+.private {
+    color: cadetblue;
+    font-family: sans-serif
+}
+.share {
+    color: darkslategray;
+    font-family: sans-serif
+}
+#page-wrap {
+    background-color: darkgrey;
+    padding: 10px;
+}
