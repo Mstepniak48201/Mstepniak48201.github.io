@@ -3,6 +3,65 @@
     <head>
      <title>Airbnb Los Angeles</title>
          <link rel="stylesheet" href="airstyle.css" media="screen" />
+          <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!--
+    Load CartoDB's code so we can pull in our CartoDB maps.
+    -->
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+      }
+
+      #map {
+        height: 520px;
+        width: 100%;
+      }
+      
+      .picker {
+        position: absolute;
+        top: 200px;
+        right: 15px;
+      }
+    </style>
+
+    <script>
+      var dataLayer;
+      $(document).ready(function () {
+        //
+        // Initialize map from CartoDB: create the map and store the data layer for later
+        //
+        cartodb.createVis('map', 'https://mstepniak.cartodb.com/api/v2/viz/c6f31c7e-e0d3-11e5-a4bd-0ea31932ec1d/viz.json')
+          .done(function (vis, layers) {
+            // Store the data layer for later:
+            //  * layers[0] is the base layer (eg OpenStreetMap)
+            //  * layers[1] is where all of your data layers go, and they're stored as "sublayers". The first one is numbered 0, the second is 1, etc. In this case we're getting the first sublayer.
+            dataLayer = layers[1].getSubLayer(0);
+          });
+
+        //
+        // Initialize the borough picker: add an event handler to watch for changes
+        //
+        $('.picker').change(function () {
+          var neighbourhood = $(this).val();
+          var sql;
+          if (neighbourhood === 'all') {
+            // if borough is 'all', reset SQL to the original
+            sql = "SELECT * FROM table_3";
+          }
+          else {
+            // else, select only features with the borough field set to the chosen borough
+            sql = "SELECT * FROM table_3 WHERE neighbourhood = '" + neighbourhood + "'";
+          }
+          dataLayer.setSQL(sql);
+        });
+      });
+    </script>
     </head>
     <body>
         <h1 id="page-wrap">Room Availability by Type:</h1>
@@ -10,22 +69,20 @@
         
         <p><span class="entire">Entire Home/apt:</span> 1006</p>
         <p><span class="private">Private Room:</span>   7739</p>
-        <p><span class="share">Shared Room:</span>      817 </p>
+        <p><span class="share">Shared Room:</span>      817  </p>
+        
+        <div id="map"></div>
+    <select class="picker">
+      <option value="all">Los Angeles</option>
+      <option value="Venice">Venice</option>
+      <option value="Hollywood">Hollywood</option>
+      <option value="Downtown">Downtown</option>
+      <option value="Santa Monica">Santa Monica</option>
+      <option value="Pasadena">Pasadena</option>
+      <option value="">other</option>
+    </select>
         
        
-        
-           <iframe width="100%" height="520" frameborder="0" src="https://mstepniak.cartodb.com/viz/c6f31c7e-e0d3-11e5-a4bd-0ea31932ec1d/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-          <form action="dogselecta.php">
-    <select name="dog">
-        <option>Holllywood Hills</option>
-        <option>Hollywood</option>
-        <option>Venice</option>
-        <option>Downtown</option>
-        <option>Brentwood</option>
-        <option selected>Santa Monica</option>
-    </select>
-    <input type="submit">
-</form> 
         <p>Is it party time in L.A.?</p>
     
         <a href="https://twitter.com/det_ideafactory">
