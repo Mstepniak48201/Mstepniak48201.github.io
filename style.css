@@ -4,9 +4,16 @@ h1 {
     font-family: sans-serif
 }
 
-a {
-    color:black;
-}
+a.yellow:link {color: #FDFF06; text-decoration: none; font-weight: bold;}
+a.yellow:active {color: #FDFF06; text-decoration: none; font-weight: bold;}
+a.yellow:visited {color: #FDFF06; text-decoration: none; font-weight: bold;}
+a.yellow:hover {color: #FDFF06; text-decoration: none; font-weight: bold;}
+
+a.black:link {color: black; font-weight: bold;}
+a.black:active {color: black; font-weight: bold;}
+a.black:visited {color: black; font-weight: bold;}
+a.black:hover {color: black; font-weight: bold;}
+
 div {
     margin-top: 10px;
 }
