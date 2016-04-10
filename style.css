@@ -40,9 +40,9 @@ div {
    -moz-box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
    box-shadow: rgba(255,255,255,0.4) 0 0px 0, inset rgba(255,255,255,0.4) 0 0px 0;
    text-shadow: #7ea4bd 0 1px 0;
-   color: #000000;
+   color: #FDFF06;
    font-size: 14px;
-   font-family: helvetica, serif;
+   font-family: sans-serif;
    text-decoration: none;
    vertical-align: middle;
    }
