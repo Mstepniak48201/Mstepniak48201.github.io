@@ -53,6 +53,9 @@ L.tileLayer(
              */
             onEachFeature: function (feature, layer) {
               layer.bindPopup('name: ' + feature.properties.C_NAMELSAD);
+            },
+            style: {
+                color: "black"
             }
           }).addTo(map);
  })
